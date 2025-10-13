@@ -1,0 +1,179 @@
+revoke delete on table "public"."clientes" from "anon";
+
+revoke insert on table "public"."clientes" from "anon";
+
+revoke references on table "public"."clientes" from "anon";
+
+revoke select on table "public"."clientes" from "anon";
+
+revoke trigger on table "public"."clientes" from "anon";
+
+revoke truncate on table "public"."clientes" from "anon";
+
+revoke update on table "public"."clientes" from "anon";
+
+revoke delete on table "public"."clientes" from "authenticated";
+
+revoke insert on table "public"."clientes" from "authenticated";
+
+revoke references on table "public"."clientes" from "authenticated";
+
+revoke select on table "public"."clientes" from "authenticated";
+
+revoke trigger on table "public"."clientes" from "authenticated";
+
+revoke truncate on table "public"."clientes" from "authenticated";
+
+revoke update on table "public"."clientes" from "authenticated";
+
+revoke delete on table "public"."clientes" from "service_role";
+
+revoke insert on table "public"."clientes" from "service_role";
+
+revoke references on table "public"."clientes" from "service_role";
+
+revoke select on table "public"."clientes" from "service_role";
+
+revoke trigger on table "public"."clientes" from "service_role";
+
+revoke truncate on table "public"."clientes" from "service_role";
+
+revoke update on table "public"."clientes" from "service_role";
+
+revoke delete on table "public"."pedidos" from "anon";
+
+revoke insert on table "public"."pedidos" from "anon";
+
+revoke references on table "public"."pedidos" from "anon";
+
+revoke select on table "public"."pedidos" from "anon";
+
+revoke trigger on table "public"."pedidos" from "anon";
+
+revoke truncate on table "public"."pedidos" from "anon";
+
+revoke update on table "public"."pedidos" from "anon";
+
+revoke delete on table "public"."pedidos" from "authenticated";
+
+revoke insert on table "public"."pedidos" from "authenticated";
+
+revoke references on table "public"."pedidos" from "authenticated";
+
+revoke select on table "public"."pedidos" from "authenticated";
+
+revoke trigger on table "public"."pedidos" from "authenticated";
+
+revoke truncate on table "public"."pedidos" from "authenticated";
+
+revoke update on table "public"."pedidos" from "authenticated";
+
+revoke delete on table "public"."pedidos" from "service_role";
+
+revoke insert on table "public"."pedidos" from "service_role";
+
+revoke references on table "public"."pedidos" from "service_role";
+
+revoke select on table "public"."pedidos" from "service_role";
+
+revoke trigger on table "public"."pedidos" from "service_role";
+
+revoke truncate on table "public"."pedidos" from "service_role";
+
+revoke update on table "public"."pedidos" from "service_role";
+
+revoke delete on table "public"."pedidos_produtos" from "anon";
+
+revoke insert on table "public"."pedidos_produtos" from "anon";
+
+revoke references on table "public"."pedidos_produtos" from "anon";
+
+revoke select on table "public"."pedidos_produtos" from "anon";
+
+revoke trigger on table "public"."pedidos_produtos" from "anon";
+
+revoke truncate on table "public"."pedidos_produtos" from "anon";
+
+revoke update on table "public"."pedidos_produtos" from "anon";
+
+revoke delete on table "public"."pedidos_produtos" from "authenticated";
+
+revoke insert on table "public"."pedidos_produtos" from "authenticated";
+
+revoke references on table "public"."pedidos_produtos" from "authenticated";
+
+revoke select on table "public"."pedidos_produtos" from "authenticated";
+
+revoke trigger on table "public"."pedidos_produtos" from "authenticated";
+
+revoke truncate on table "public"."pedidos_produtos" from "authenticated";
+
+revoke update on table "public"."pedidos_produtos" from "authenticated";
+
+revoke delete on table "public"."pedidos_produtos" from "service_role";
+
+revoke insert on table "public"."pedidos_produtos" from "service_role";
+
+revoke references on table "public"."pedidos_produtos" from "service_role";
+
+revoke select on table "public"."pedidos_produtos" from "service_role";
+
+revoke trigger on table "public"."pedidos_produtos" from "service_role";
+
+revoke truncate on table "public"."pedidos_produtos" from "service_role";
+
+revoke update on table "public"."pedidos_produtos" from "service_role";
+
+revoke delete on table "public"."produtos" from "anon";
+
+revoke insert on table "public"."produtos" from "anon";
+
+revoke references on table "public"."produtos" from "anon";
+
+revoke select on table "public"."produtos" from "anon";
+
+revoke trigger on table "public"."produtos" from "anon";
+
+revoke truncate on table "public"."produtos" from "anon";
+
+revoke update on table "public"."produtos" from "anon";
+
+revoke delete on table "public"."produtos" from "authenticated";
+
+revoke insert on table "public"."produtos" from "authenticated";
+
+revoke references on table "public"."produtos" from "authenticated";
+
+revoke select on table "public"."produtos" from "authenticated";
+
+revoke trigger on table "public"."produtos" from "authenticated";
+
+revoke truncate on table "public"."produtos" from "authenticated";
+
+revoke update on table "public"."produtos" from "authenticated";
+
+revoke delete on table "public"."produtos" from "service_role";
+
+revoke insert on table "public"."produtos" from "service_role";
+
+revoke references on table "public"."produtos" from "service_role";
+
+revoke select on table "public"."produtos" from "service_role";
+
+revoke trigger on table "public"."produtos" from "service_role";
+
+revoke truncate on table "public"."produtos" from "service_role";
+
+revoke update on table "public"."produtos" from "service_role";
+
+alter table "public"."clientes" add column "user_id" uuid not null;
+
+alter table "public"."pedidos" alter column "estado" set default '0'::smallint;
+
+alter table "public"."pedidos" alter column "estado" set not null;
+
+alter table "public"."clientes" add constraint "clientes_user_id_fkey" FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE not valid;
+
+alter table "public"."clientes" validate constraint "clientes_user_id_fkey";
+
+
