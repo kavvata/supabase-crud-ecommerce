@@ -1,0 +1,38 @@
+Table clientes {
+  id integer [primary key]
+  user_id uuid [unique]
+  nome_completo varchar [not null]
+  criado_em timestamp [not null]
+  removido_em timestamp
+}
+
+Table produtos {
+  id integer [primary key]
+  descricao varchar [not null]
+  preco integer [not null]
+  estoque int [not null, default: 0]
+  criado_em timestamp [not null, default: "now"]
+  removido_em timestamp
+}
+
+Table pedidos {
+  id integer [primary key]
+  cliente_id integer [not null]
+  criado_em timestamp [not null, default: "now"]
+  entrega_prevista_em timestamp [not null]
+  entregue_em timestamp
+  estado int [not null]
+  removido_em timestamp
+}
+
+Table pedidos_produtos {
+  pedido_id integer [primary key]
+  produto_id integer [primary key]
+  preco_no_pedido integer [not null]
+  quantidade int [not null, default: 1]
+  removido_em timestamp
+}
+
+Ref: pedidos.cliente_id > clientes.id
+Ref: pedidos_produtos.pedido_id > pedidos.id
+Ref: pedidos_produtos.produto_id > produtos.id
