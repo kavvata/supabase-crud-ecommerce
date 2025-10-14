@@ -22,7 +22,6 @@ Table pedidos {
   entrega_prevista_em timestamp [not null]
   entregue_em timestamp
   estado int [not null]
-  removido_em timestamp
 }
 
 Table pedidos_produtos {
