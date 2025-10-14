@@ -132,6 +132,12 @@ INSERT INTO auth.users (
     false
 );
 
+INSERT INTO users_roles ("id", "user_id", "role_id") VALUES 
+  ('1', '1ee6d767-9ad0-4e48-92bf-cd2558f59753', '2'), 
+  ('2', '3bbcda2d-b07b-4c1f-a1cb-0e395fa71cba', '2'), 
+  ('3', '9c135887-1b0e-4e5d-a642-67b43839fa7f', '2'), 
+  ('4', 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', '2'), 
+  ('5', 'b0d7cdde-ff3a-454f-8f38-78d6497c746d', '2');
 
 INSERT INTO clientes (id, user_id, nome_completo, criado_em) VALUES
 (1, '3bbcda2d-b07b-4c1f-a1cb-0e395fa71cba', 'Gabriel Kavata', NOW()),
