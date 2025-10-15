@@ -1,13 +1,19 @@
 set check_function_bodies = off;
 
-CREATE OR REPLACE FUNCTION public."current_role"()
+CREATE OR REPLACE FUNCTION public.current_role()
  RETURNS text
  LANGUAGE sql
  STABLE
 AS $function$
-  select coalesce(auth.jwt() -> 'app_metadata' ->> 'role', 'anon');
-$function$
-;
+  SELECT COALESCE(
+    (SELECT r.nome
+     FROM users_roles ur
+     JOIN roles r ON ur.role_id = r.id
+     WHERE ur.user_id = auth.uid()
+     LIMIT 1),
+    'anon' 
+);
+$function$;
 
 create policy "Permite clientes ver somente o próprio cadastro de cliente"
 on "public"."clientes"
